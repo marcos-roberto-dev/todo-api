@@ -5,6 +5,14 @@ export default class BoardRepositoryMemory implements Repository<Board> {
   private boards: Board[] = [];
 
   async create(modelBoard: Board): Promise<void> {
+    const findIndex = this.boards.findIndex(
+      (board) => board.name === modelBoard.name
+    );
+    const hasBoardInRepository = findIndex !== -1;
+
+    if (hasBoardInRepository) {
+      throw new Error("Board already exists");
+    }
     this.boards.push(modelBoard);
   }
 

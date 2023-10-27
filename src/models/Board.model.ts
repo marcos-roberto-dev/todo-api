@@ -1,6 +1,6 @@
 import ModelBase from "../types/ModelBase.type";
 
-export default class BoardModel extends ModelBase {
+export default class Board extends ModelBase {
   constructor(
     public id: string,
     public name: string,

@@ -1,6 +1,6 @@
 import ModelBase from "../types/ModelBase.type";
 
-export default class TodoModel extends ModelBase {
+export default class Todo extends ModelBase {
   constructor(
     public id: string,
     public name: string,
