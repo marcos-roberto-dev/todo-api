@@ -1,9 +1,3 @@
-// Extend a class BoardModel to class Board
-// this class will be has a method:
-// - return a new instance of Board
-// - new Board(id, name, description, columnsId)
-// - this method add a new columnId to columnsId
-
 import BoardModel from "../models/Board.model";
 
 export default class Board extends BoardModel {

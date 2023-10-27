@@ -1,12 +1,3 @@
-// extenda a classe ColumnModel para a classe Column
-// essa classe vai ter os seguintes métodos:
-// - metodo 1:
-// -- retorna uma nova instância de Column
-// -- adicionando um novo todoId ao array de todos
-// - metodo 2:
-// -- retorna uma nova instância de Column
-// -- adionando um novo boardId a propriedade boardId
-
 import ColumnModel from "../models/Column.model";
 
 export default class Column extends ColumnModel {
