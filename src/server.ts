@@ -4,7 +4,7 @@ import { boardRouter, columnRouter } from "./routes";
 import todoRouter from "./routes/todo.routes";
 
 const server = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const messageLog = "Server listening at http://localhost:3000 🚀";
 
 server.use(express.json());
