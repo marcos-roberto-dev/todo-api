@@ -1,6 +1,6 @@
 import ModelBase from "../types/ModelBase.type";
 
-export default class ColumnModel extends ModelBase {
+export default class Column extends ModelBase {
   constructor(
     public id: string,
     public name: string,
