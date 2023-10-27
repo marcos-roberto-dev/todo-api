@@ -9,9 +9,9 @@ const messageLog = "Server listening at http://localhost:3000 🚀";
 
 server.use(express.json());
 
-server.use("/api/board", boardRouter);
-server.use("/api/column", columnRouter);
-server.use("/api/todo", todoRouter);
+server.use("/board", boardRouter);
+server.use("/column", columnRouter);
+server.use("/todo", todoRouter);
 
 server.listen(PORT, () => {
   console.log(messageLog);
