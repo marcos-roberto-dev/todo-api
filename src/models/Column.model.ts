@@ -1,13 +1,26 @@
 import ModelBase from "../types/ModelBase.type";
 
 export default class Column extends ModelBase {
+  protected _todosId: string[];
+  protected _boardId: string;
+
   constructor(
-    public id: string,
-    public name: string,
-    public description: string,
-    public todosId: string[],
-    public boardId: string
+    id: string,
+    name: string,
+    description: string,
+    todosId: string[],
+    boardId: string
   ) {
-    super();
+    super(id, name, description);
+    this._todosId = todosId;
+    this._boardId = boardId;
+  }
+
+  get todosId(): string[] {
+    return this._todosId;
+  }
+
+  get boardId(): string {
+    return this._boardId;
   }
 }

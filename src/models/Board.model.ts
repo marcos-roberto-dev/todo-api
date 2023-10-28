@@ -1,12 +1,19 @@
 import ModelBase from "../types/ModelBase.type";
 
 export default class Board extends ModelBase {
+  protected _columnsId: string[];
+
   constructor(
-    public id: string,
-    public name: string,
-    public description: string,
-    public columnsId: string[]
+    id: string,
+    name: string,
+    description: string,
+    columnsId: string[]
   ) {
-    super();
+    super(id, name, description);
+    this._columnsId = columnsId;
+  }
+
+  get columnsId(): string[] {
+    return this._columnsId;
   }
 }

@@ -16,5 +16,3 @@ server.use("/todo", todoRouter);
 server.listen(PORT, () => {
   console.log(messageLog);
 });
-
-export default server;
