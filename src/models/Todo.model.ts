@@ -23,4 +23,12 @@ export default class Todo extends ModelBase {
   get boardId(): string {
     return this._boardId;
   }
+
+  setColumnId(columnId: string): void {
+    this._columnId = columnId;
+  }
+
+  setBoardId(boardId: string): void {
+    this._boardId = boardId;
+  }
 }

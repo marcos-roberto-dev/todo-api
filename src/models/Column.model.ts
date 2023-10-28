@@ -23,4 +23,12 @@ export default class Column extends ModelBase {
   get boardId(): string {
     return this._boardId;
   }
+
+  setTodosId(todosId: string[]): void {
+    this._todosId = todosId;
+  }
+
+  setBoardId(boardId: string): void {
+    this._boardId = boardId;
+  }
 }

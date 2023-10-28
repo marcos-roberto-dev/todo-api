@@ -16,4 +16,8 @@ export default class Board extends ModelBase {
   get columnsId(): string[] {
     return this._columnsId;
   }
+
+  setColumnsId(columnsId: string[]): void {
+    this._columnsId = columnsId;
+  }
 }

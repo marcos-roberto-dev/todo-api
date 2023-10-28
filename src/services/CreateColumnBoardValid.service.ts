@@ -17,7 +17,7 @@ export default class CreateColumnBoardValidService {
 
     await this.columnRepository.create(column);
 
-    board.columnsId = [...board.columnsId, column.id];
+    board.setColumnsId([...board.columnsId, column.id]);
     await this.boardRepository.update(board);
   }
 }

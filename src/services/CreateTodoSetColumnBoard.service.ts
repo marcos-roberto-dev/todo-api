@@ -16,7 +16,7 @@ export default class CreateTodoSetColumnBoardService {
     }
 
     await this.todoRepository.create(todo);
-    column.todosId = [...column.todosId, todo.id];
+    column.setTodosId([...column.todosId, todo.id]);
     await this.columnRepository.update(column);
   }
 }

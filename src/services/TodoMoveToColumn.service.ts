@@ -29,19 +29,20 @@ export default class TodoMoveToColumnService {
       throw new Error("From column not found");
     }
 
-    todo.columnId = toColumn.id;
+    todo.setColumnId(toColumn.id);
+
     await this.todoRepository.update(todo);
 
-    // remover o todo da coluna de origem
     const fromColumnTodos = fromColumn.todosId.filter(
       (todoIdFilter) => todoIdFilter !== todoId
     );
-    fromColumn.todosId = fromColumnTodos;
+    fromColumn.setTodosId(fromColumnTodos);
+
     await this.columnRepository.update(fromColumn);
 
-    // adicionar o todo na coluna de destino
     const toColumnTodos = [...toColumn.todosId, todoId];
-    toColumn.todosId = toColumnTodos;
+    toColumn.setTodosId(toColumnTodos);
+
     await this.columnRepository.update(toColumn);
   }
 }
