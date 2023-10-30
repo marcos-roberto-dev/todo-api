@@ -4,6 +4,8 @@ import CreateColumnBoardValidService from "../services/CreateColumnBoardValid.se
 import { boardRepository, columnRepository, todoRepository } from ".";
 import TodoMoveToColumnService from "../services/TodoMoveToColumn.service";
 import { Column } from "../models";
+import { ColumnValidate } from "../validations/models/ColumnValidate";
+import { ErrorValidate } from "../validations/Validate";
 
 const columnRouter = express.Router();
 
@@ -21,10 +23,18 @@ columnRouter.post("/", async (req, res) => {
   );
 
   const column = new Column(randomUUID(), name, description ?? "", [], boardId);
+  const errors = new ErrorValidate();
 
-  await columnService.execute(column);
+  if (ColumnValidate.isValid(errors, column)) {
+    const response = await columnService.execute(column);
 
-  return res.sendStatus(201);
+    return res.status(response.statusCode).json(response);
+  }
+
+  return res.status(400).json({
+    message: errors.list,
+    statusCode: 400,
+  });
 });
 
 columnRouter.put("/move", async (req, res) => {
@@ -35,9 +45,13 @@ columnRouter.put("/move", async (req, res) => {
     columnRepository
   );
 
-  await todoMoveToColumnService.execute({ todoId, fromColumnId, toColumnId });
+  const response = await todoMoveToColumnService.execute({
+    todoId,
+    fromColumnId,
+    toColumnId,
+  });
 
-  return res.sendStatus(200);
+  return res.status(response.statusCode).json(response);
 });
 
 export default columnRouter;

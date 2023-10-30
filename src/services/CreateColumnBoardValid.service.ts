@@ -1,6 +1,9 @@
 import ColumnRepository from "../repositories/Column.repository";
 import BoardRepository from "../repositories/Board.repository";
 import { Column } from "../models";
+import { CreateColumnBoardValidate } from "../validations/services/CreateColumnBoardValidate";
+import { ErrorValidate } from "../validations/Validate";
+import { MessageResponse } from "../types/DTOs/IResponse";
 
 export default class CreateColumnBoardValidService {
   constructor(
@@ -8,16 +11,22 @@ export default class CreateColumnBoardValidService {
     private boardRepository: BoardRepository
   ) {}
 
-  async execute(column: Column): Promise<void> {
+  async execute(column: Column): Promise<MessageResponse> {
     const board = await this.boardRepository.findById(column.boardId);
+    const errors = new ErrorValidate();
 
-    if (!board) {
-      throw new Error("Board not found");
+    if (CreateColumnBoardValidate.isValid(errors, board)) {
+      await this.columnRepository.create(column);
+
+      board.setColumnsId([...board.columnsId, column.id]);
+      await this.boardRepository.update(board);
+
+      return {
+        message: [{ name: "success", message: "Column created successfully!" }],
+        statusCode: 200,
+      };
     }
 
-    await this.columnRepository.create(column);
-
-    board.setColumnsId([...board.columnsId, column.id]);
-    await this.boardRepository.update(board);
+    return { message: errors.list, statusCode: 400 };
   }
 }
