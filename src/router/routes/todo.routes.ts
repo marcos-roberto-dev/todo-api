@@ -1,10 +1,10 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
-import { boardRepository, columnRepository, todoRepository } from ".";
-import CreateTodoSetColumnBoardService from "../services/CreateTodoSetColumnBoard.service";
-import { Todo } from "../models";
-import { ErrorValidate } from "../validations/Validate";
-import { TodoValidate } from "../validations/models/TodoValidate";
+import { boardRepository, columnRepository, todoRepository } from "..";
+import CreateTodoSetColumnBoardService from "../../services/CreateTodoSetColumnBoard.service";
+import { Todo } from "../../models";
+import { ErrorValidate } from "../../validations/Validate";
+import { TodoValidate } from "../../validations/models/TodoValidate";
 
 const todoRouter = express.Router();
 
@@ -37,7 +37,7 @@ todoRouter.post("/", async (req, res) => {
   }
 
   return res.status(400).json({
-    message: errors.list,
+    result: errors.list,
     statusCode: 400,
   });
 });

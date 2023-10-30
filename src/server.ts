@@ -1,14 +1,16 @@
 import express from "express";
-import { boardRouter, columnRouter } from "./routes";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsonDocs from "./docs/swagger.json";
 
-import todoRouter from "./routes/todo.routes";
+import { boardRouter, columnRouter, todoRouter } from "./router";
 
 const server = express();
 const PORT = process.env.PORT || 3000;
-const messageLog = "Server listening at http://localhost:3000 🚀";
+const messageLog = `Server listening at http://localhost:${PORT} 🚀`;
 
 server.use(express.json());
 
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJsonDocs));
 server.use("/board", boardRouter);
 server.use("/column", columnRouter);
 server.use("/todo", todoRouter);

@@ -1,11 +1,11 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
-import CreateColumnBoardValidService from "../services/CreateColumnBoardValid.service";
-import { boardRepository, columnRepository, todoRepository } from ".";
-import TodoMoveToColumnService from "../services/TodoMoveToColumn.service";
-import { Column } from "../models";
-import { ColumnValidate } from "../validations/models/ColumnValidate";
-import { ErrorValidate } from "../validations/Validate";
+import CreateColumnBoardValidService from "../../services/CreateColumnBoardValid.service";
+import { boardRepository, columnRepository, todoRepository } from "..";
+import TodoMoveToColumnService from "../../services/TodoMoveToColumn.service";
+import { Column } from "../../models";
+import { ColumnValidate } from "../../validations/models/ColumnValidate";
+import { ErrorValidate } from "../../validations/Validate";
 
 const columnRouter = express.Router();
 
@@ -32,7 +32,7 @@ columnRouter.post("/", async (req, res) => {
   }
 
   return res.status(400).json({
-    message: errors.list,
+    result: errors.list,
     statusCode: 400,
   });
 });
