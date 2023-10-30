@@ -50,16 +50,16 @@ export default class TodoMoveToColumnService {
       };
     }
 
-    todo.setColumnId(toColumn.id);
+    todo.setColumnId(toColumn.getId);
     await this.todoRepository.update(todo);
 
-    const fromColumnTodos = fromColumn.todosId.filter(
+    const fromColumnTodos = fromColumn.getTodosId.filter(
       (todoIdFilter) => todoIdFilter !== todoId
     );
     fromColumn.setTodosId(fromColumnTodos);
     await this.columnRepository.update(fromColumn);
 
-    const toColumnTodos = [...toColumn.todosId, todoId];
+    const toColumnTodos = [...toColumn.getTodosId, todoId];
     toColumn.setTodosId(toColumnTodos);
     await this.columnRepository.update(toColumn);
 

@@ -14,15 +14,15 @@ export default class CreateTodoSetColumnBoardService {
   ) {}
 
   async execute(todo: Todo): Promise<MessageResponse> {
-    const column = await this.columnRepository.findById(todo.columnId);
-    const board = await this.boardRepository.findById(todo.boardId);
+    const column = await this.columnRepository.findById(todo.getColumnId);
+    const board = await this.boardRepository.findById(todo.getBoardId);
 
     const errors = new ErrorValidate();
     if (CreateTodoSetColumnBoardValidate.isValid(errors, column, board)) {
       await this.todoRepository.create(todo);
-      column.setTodosId([...column.todosId, todo.id]);
+      column.setTodosId([...column.getTodosId, todo.getId]);
       await this.columnRepository.update(column);
-      board.setTodosId([...board.todosId, todo.id]);
+      board.setTodosId([...board.getTodosId, todo.getId]);
       await this.boardRepository.update(board);
 
       return {

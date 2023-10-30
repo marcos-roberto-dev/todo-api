@@ -1,8 +1,8 @@
 import ModelBase from "../types/ModelBase.type";
 
 export default class Todo extends ModelBase {
-  protected _columnId: string;
-  protected _boardId: string;
+  protected columnId: string;
+  protected boardId: string;
 
   constructor(
     id: string,
@@ -12,23 +12,23 @@ export default class Todo extends ModelBase {
     boardId: string
   ) {
     super(id, name, description);
-    this._columnId = columnId;
-    this._boardId = boardId;
+    this.columnId = columnId;
+    this.boardId = boardId;
   }
 
-  get columnId(): string {
-    return this._columnId;
+  get getColumnId(): string {
+    return this.columnId;
   }
 
-  get boardId(): string {
-    return this._boardId;
+  get getBoardId(): string {
+    return this.boardId;
   }
 
   setColumnId(columnId: string): void {
-    this._columnId = columnId;
+    this.columnId = columnId;
   }
 
   setBoardId(boardId: string): void {
-    this._boardId = boardId;
+    this.boardId = boardId;
   }
 }

@@ -26,21 +26,21 @@ export function Seeds({
     "Coluna generica 1",
     "",
     ["todo_id_mock_1"],
-    board.id
+    board.getId
   );
   const column2 = new Column(
     "column_id_mock_2",
     "Coluna generica 2 ok ",
     "",
     [],
-    board.id
+    board.getId
   );
   const todo = new Todo(
     "todo_id_mock_1",
     "Todo generico",
     "",
-    column1.id,
-    board.id
+    column1.getId,
+    board.getId
   );
 
   boardRepository.create(board);

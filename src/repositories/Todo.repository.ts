@@ -10,18 +10,18 @@ export default class TodoRepositoryMemory implements Repository<Todo> {
 
   async update(modelTodo: Todo): Promise<void> {
     const findIndex = this.boards.findIndex(
-      (board) => board.id === modelTodo.id
+      (board) => board.getId === modelTodo.getId
     );
     this.boards[findIndex] = modelTodo;
   }
 
   async delete(id: string): Promise<void> {
-    const findIndex = this.boards.findIndex((board) => board.id === id);
+    const findIndex = this.boards.findIndex((board) => board.getId === id);
     this.boards.splice(findIndex, 1);
   }
 
   async findById(id: string): Promise<Todo> {
-    const findIndex = this.boards.findIndex((board) => board.id === id);
+    const findIndex = this.boards.findIndex((board) => board.getId === id);
     return this.boards[findIndex];
   }
 

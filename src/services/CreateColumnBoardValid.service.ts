@@ -12,13 +12,13 @@ export default class CreateColumnBoardValidService {
   ) {}
 
   async execute(column: Column): Promise<MessageResponse> {
-    const board = await this.boardRepository.findById(column.boardId);
+    const board = await this.boardRepository.findById(column.getBoardId);
     const errors = new ErrorValidate();
 
     if (CreateColumnBoardValidate.isValid(errors, board)) {
       await this.columnRepository.create(column);
 
-      board.setColumnsId([...board.columnsId, column.id]);
+      board.setColumnsId([...board.getColumnsId, column.getId]);
       await this.boardRepository.update(board);
 
       return {

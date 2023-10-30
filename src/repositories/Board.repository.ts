@@ -10,18 +10,18 @@ export default class BoardRepositoryMemory implements Repository<Board> {
 
   async update(modelBoard: Board): Promise<void> {
     const findIndex = this.boards.findIndex(
-      (board) => board.id === modelBoard.id
+      (board) => board.getId === modelBoard.getId
     );
     this.boards[findIndex] = modelBoard;
   }
 
   async delete(id: string): Promise<void> {
-    const findIndex = this.boards.findIndex((board) => board.id === id);
+    const findIndex = this.boards.findIndex((board) => board.getId === id);
     this.boards.splice(findIndex, 1);
   }
 
   async findById(id: string): Promise<Board> {
-    const findIndex = this.boards.findIndex((board) => board.id === id);
+    const findIndex = this.boards.findIndex((board) => board.getId === id);
     return this.boards[findIndex];
   }
 

@@ -1,21 +1,21 @@
 export default class ModelBase {
-  protected _id: string;
-  protected _name: string;
-  protected _description: string;
+  protected id: string;
+  protected name: string;
+  protected description: string;
 
   constructor(id: string, name: string, description: string) {
-    this._id = id;
-    this._name = name;
-    this._description = description;
+    this.id = id;
+    this.name = name;
+    this.description = description;
   }
 
-  get id() {
-    return this._id;
+  get getId() {
+    return this.id;
   }
-  get name() {
-    return this._name;
+  get getName() {
+    return this.name;
   }
-  get description() {
-    return this._description;
+  get getDescription() {
+    return this.description;
   }
 }

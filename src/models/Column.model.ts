@@ -1,8 +1,8 @@
 import ModelBase from "../types/ModelBase.type";
 
 export default class Column extends ModelBase {
-  protected _todosId: string[];
-  protected _boardId: string;
+  protected todosId: string[];
+  protected boardId: string;
 
   constructor(
     id: string,
@@ -12,23 +12,23 @@ export default class Column extends ModelBase {
     boardId: string
   ) {
     super(id, name, description);
-    this._todosId = todosId;
-    this._boardId = boardId;
+    this.todosId = todosId;
+    this.boardId = boardId;
   }
 
-  get todosId(): string[] {
-    return this._todosId;
+  get getTodosId(): string[] {
+    return this.todosId;
   }
 
-  get boardId(): string {
-    return this._boardId;
+  get getBoardId(): string {
+    return this.boardId;
   }
 
   setTodosId(todosId: string[]): void {
-    this._todosId = todosId;
+    this.todosId = todosId;
   }
 
   setBoardId(boardId: string): void {
-    this._boardId = boardId;
+    this.boardId = boardId;
   }
 }
