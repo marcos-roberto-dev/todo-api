@@ -14,10 +14,13 @@ export function Seeds({
   columnRepository,
   todoRepository,
 }: SeedsProps) {
-  const board = new Board("board_id_mock_1", "Board generico", "", [
-    "column_id_mock_1",
-    "column_id_mock_2",
-  ]);
+  const board = new Board(
+    "board_id_mock_1",
+    "Board generico",
+    "",
+    ["column_id_mock_1", "column_id_mock_2"],
+    []
+  );
   const column1 = new Column(
     "column_id_mock_1",
     "Coluna generica 1",
