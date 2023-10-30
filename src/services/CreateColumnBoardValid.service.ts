@@ -11,7 +11,7 @@ export default class CreateColumnBoardValidService {
     private boardRepository: BoardRepository
   ) {}
 
-  async execute(column: Column): Promise<MessageResponse> {
+  async execute(column: Column): Promise<Record<string, any>> {
     const board = await this.boardRepository.findById(column.getBoardId);
     const errors = new ErrorValidate();
 
@@ -22,11 +22,11 @@ export default class CreateColumnBoardValidService {
       await this.boardRepository.update(board);
 
       return {
-        message: [{ name: "success", message: "Column created successfully!" }],
-        statusCode: 200,
+        result: { name: "success", message: "Column created successfully!" },
+        statusCode: 201,
       };
     }
 
-    return { message: errors.list, statusCode: 400 };
+    return { result: errors.list, statusCode: 400 };
   }
 }

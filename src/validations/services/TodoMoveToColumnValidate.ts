@@ -14,21 +14,21 @@ export class TodoMoveToColumnServiceValidate {
     if (!todo) {
       errors.addError({
         name: "todo",
-        message: "Todo not found",
+        result: "Todo not found",
       });
     }
 
     if (!fromColumn) {
       errors.addError({
         name: "fromColumn",
-        message: "From column not found",
+        result: "From column not found",
       });
     }
 
     if (!toColumn) {
       errors.addError({
         name: "toColumn",
-        message: "To column not found",
+        result: "To column not found",
       });
     }
 

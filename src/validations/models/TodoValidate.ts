@@ -3,24 +3,24 @@ import { ErrorValidate } from "../Validate";
 
 export class TodoValidate {
   static isValid(errors: ErrorValidate, modelEntity: Todo) {
-    if (!modelEntity.name) {
+    if (!modelEntity.getName) {
       errors.addError({
         name: "name",
-        message: "Name is required",
+        result: "Name is required",
       });
     }
 
-    if (!modelEntity.columnId) {
+    if (!modelEntity.getColumnId) {
       errors.addError({
         name: "columnId",
-        message: "ColumnId is required",
+        result: "ColumnId is required",
       });
     }
 
-    if (!modelEntity.boardId) {
+    if (!modelEntity.getBoardId) {
       errors.addError({
         name: "boardId",
-        message: "BoardId is required",
+        result: "BoardId is required",
       });
     }
 

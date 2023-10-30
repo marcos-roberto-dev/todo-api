@@ -1,6 +1,6 @@
 export interface ErrorValidateData {
   name: string;
-  message: string;
+  result: string;
 }
 
 export class ErrorValidate {

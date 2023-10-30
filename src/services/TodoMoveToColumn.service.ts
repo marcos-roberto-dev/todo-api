@@ -16,7 +16,7 @@ export default class TodoMoveToColumnService {
     todoId,
     toColumnId,
     fromColumnId,
-  }: ITodoMoveToColumnRequestDTO): Promise<MessageResponse> {
+  }: ITodoMoveToColumnRequestDTO): Promise<Record<string, any>> {
     const errorsToValidateParams = new ErrorValidate();
 
     if (
@@ -27,7 +27,7 @@ export default class TodoMoveToColumnService {
       })
     ) {
       return {
-        message: errorsToValidateParams.list,
+        result: errorsToValidateParams.list,
         statusCode: 400,
       };
     }
@@ -38,34 +38,34 @@ export default class TodoMoveToColumnService {
 
     const errorsToValidateService = new ErrorValidate();
     if (
-      !TodoMoveToColumnServiceValidate.isValid(errorsToValidateService, {
+      TodoMoveToColumnServiceValidate.isValid(errorsToValidateService, {
         todo,
         fromColumn,
         toColumn,
       })
     ) {
+      todo.setColumnId(toColumn.getId);
+      await this.todoRepository.update(todo);
+
+      const fromColumnTodos = fromColumn.getTodosId.filter(
+        (todoIdFilter) => todoIdFilter !== todoId
+      );
+      fromColumn.setTodosId(fromColumnTodos);
+      await this.columnRepository.update(fromColumn);
+
+      const toColumnTodos = [...toColumn.getTodosId, todoId];
+      toColumn.setTodosId(toColumnTodos);
+      await this.columnRepository.update(toColumn);
+
       return {
-        message: errorsToValidateService.list,
-        statusCode: 400,
+        result: { name: "success", result: "Todo moved successfully!" },
+        statusCode: 200,
       };
     }
 
-    todo.setColumnId(toColumn.getId);
-    await this.todoRepository.update(todo);
-
-    const fromColumnTodos = fromColumn.getTodosId.filter(
-      (todoIdFilter) => todoIdFilter !== todoId
-    );
-    fromColumn.setTodosId(fromColumnTodos);
-    await this.columnRepository.update(fromColumn);
-
-    const toColumnTodos = [...toColumn.getTodosId, todoId];
-    toColumn.setTodosId(toColumnTodos);
-    await this.columnRepository.update(toColumn);
-
     return {
-      message: [{ name: "success", message: "Todo moved successfully!" }],
-      statusCode: 200,
+      result: errorsToValidateService.list,
+      statusCode: 400,
     };
   }
 }
