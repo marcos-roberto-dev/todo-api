@@ -1,9 +1,9 @@
 import ModelBase from "./ModelBase.type";
 
-export default abstract class Repository<T extends ModelBase> {
-  abstract create(model: T): Promise<void>;
-  abstract update(model: T): Promise<void>;
-  abstract delete(id: string): Promise<void>;
-  abstract findById(id: string): Promise<T>;
-  abstract findAll(): Promise<T[]>;
+export default interface Repository<T extends ModelBase> {
+  create(model: T): Promise<void>;
+  update(model: T): Promise<void>;
+  delete(id: string): Promise<void>;
+  findById(id: string): Promise<T>;
+  findAll(): Promise<T[]>;
 }
