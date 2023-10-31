@@ -1,8 +1,7 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
 import CreateColumnBoardValidService from "../../services/CreateColumnBoardValid.service";
-import { boardRepository, columnRepository, todoRepository } from "..";
-import TodoMoveToColumnService from "../../services/TodoMoveToColumn.service";
+import { boardRepository, columnRepository } from "..";
 import { Column } from "../../models";
 import { ColumnValidate } from "../../validations/models/ColumnValidate";
 import { ErrorValidate } from "../../validations/Validate";
@@ -46,23 +45,6 @@ columnRouter.post("/", async (req, res) => {
     data: errors.list,
     statusCode: 400,
   });
-});
-
-columnRouter.put("/move", async (req, res) => {
-  const { todoId, fromColumnId, toColumnId } = req.body;
-
-  const todoMoveToColumnService = new TodoMoveToColumnService(
-    todoRepository,
-    columnRepository
-  );
-
-  const response = await todoMoveToColumnService.execute({
-    todoId,
-    fromColumnId,
-    toColumnId,
-  });
-
-  return res.status(response.statusCode).json(response);
 });
 
 export default columnRouter;

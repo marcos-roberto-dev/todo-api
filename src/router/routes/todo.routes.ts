@@ -5,6 +5,7 @@ import CreateTodoSetColumnBoardService from "../../services/CreateTodoSetColumnB
 import { Todo } from "../../models";
 import { ErrorValidate } from "../../validations/Validate";
 import { TodoValidate } from "../../validations/models/TodoValidate";
+import TodoMoveToColumnService from "../../services/TodoMoveToColumn.service";
 
 const todoRouter = express.Router();
 
@@ -51,6 +52,23 @@ todoRouter.post("/", async (req, res) => {
     data: errors.list,
     statusCode: 400,
   });
+});
+
+todoRouter.put("/move-to", async (req, res) => {
+  const { todoId, fromColumnId, toColumnId } = req.body;
+
+  const todoMoveToColumnService = new TodoMoveToColumnService(
+    todoRepository,
+    columnRepository
+  );
+
+  const response = await todoMoveToColumnService.execute({
+    todoId,
+    fromColumnId,
+    toColumnId,
+  });
+
+  return res.status(response.statusCode).json(response);
 });
 
 export default todoRouter;
