@@ -15,6 +15,17 @@ columnRouter.get("/", async (req, res) => {
   return res.json(columns);
 });
 
+columnRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const column = await columnRepository.findById(id);
+
+  if (!column) {
+    return res.sendStatus(404);
+  }
+
+  return res.json(column);
+});
+
 columnRouter.post("/", async (req, res) => {
   const { name, description, boardId } = req.body;
   const columnService = new CreateColumnBoardValidService(

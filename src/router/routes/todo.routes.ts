@@ -13,6 +13,17 @@ todoRouter.get("/", async (_, res) => {
   return res.json(todos);
 });
 
+todoRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const todo = await todoRepository.findById(id);
+
+  if (!todo) {
+    return res.sendStatus(404);
+  }
+
+  return res.json(todo);
+});
+
 todoRouter.post("/", async (req, res) => {
   const { name, description, boardId, columnId } = req.body;
   const createTodoSetColumnBoardService = new CreateTodoSetColumnBoardService(
