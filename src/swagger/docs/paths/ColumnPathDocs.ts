@@ -33,7 +33,7 @@ export const ColumnPathDocs: OpenAPIV3.PathsObject = {
           "application/json": {
             schema: {
               type: "object",
-              required: ["name"],
+              required: ["name", "boardId"],
               properties: {
                 name: {
                   type: "string",

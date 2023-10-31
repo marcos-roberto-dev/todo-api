@@ -33,7 +33,7 @@ export const TodoPathDocs: OpenAPIV3.PathsObject = {
           "application/json": {
             schema: {
               type: "object",
-              required: ["name"],
+              required: ["name", "columnId", "boardId"],
               properties: {
                 name: {
                   type: "string",
@@ -105,6 +105,72 @@ export const TodoPathDocs: OpenAPIV3.PathsObject = {
           content: {
             "application/json": {
               schema: TodoModelDoc,
+            },
+          },
+        },
+      },
+    },
+  },
+  "/todo/move-to": {
+    put: {
+      tags: ["Todo"],
+      summary: "Move a Todo to another column",
+      description: "This route moves a Todo to another column.",
+      requestBody: {
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              required: ["todoId", "fromColumnId", "toColumnId"],
+              properties: {
+                todoId: {
+                  type: "string",
+                  example: "todo_id_mock_1",
+                  description: "Id of the Todo",
+                },
+                fromColumnId: {
+                  type: "string",
+                  example: "column_id_mock_1",
+                  description: "Id of the column",
+                },
+                toColumnId: {
+                  type: "string",
+                  example: "column_id_mock_2",
+                  description: "Id of the column",
+                },
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        "201": {
+          description: "Ok",
+          content: {
+            "application/json": {
+              schema: messageCode({
+                name: "Todo moved",
+                message: "Todo moved successfully!",
+                statusCode: 201,
+              }),
+            },
+          },
+        },
+        "400": {
+          description: "Properties are required!",
+          content: {
+            "application/json": {
+              schema: messageCode({
+                statusCode: 400,
+                list: [
+                  { name: "todoId", message: "TodoId is required!" },
+                  {
+                    name: "fromColumnId",
+                    message: "fromColumnId is required!",
+                  },
+                  { name: "toColumnId", message: "toColumnId is required!" },
+                ],
+              }),
             },
           },
         },
