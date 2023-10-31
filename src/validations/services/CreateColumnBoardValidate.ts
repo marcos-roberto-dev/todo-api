@@ -6,7 +6,7 @@ export class CreateColumnBoardValidate {
     if (!board) {
       errors.addError({
         name: "board",
-        data: "Board is not found",
+        message: "Board is not found",
       });
     }
 
