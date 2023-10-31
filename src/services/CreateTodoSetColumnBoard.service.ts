@@ -26,13 +26,13 @@ export default class CreateTodoSetColumnBoardService {
       await this.boardRepository.update(board);
 
       return {
-        result: { name: "success", result: "Todo created successfully!" },
+        data: { name: "success", data: "Todo created successfully!" },
         statusCode: 201,
       };
     }
 
     return {
-      result: errors.list,
+      data: errors.list,
       statusCode: 400,
     };
   }

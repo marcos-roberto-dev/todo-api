@@ -7,6 +7,31 @@ import { BoardValidate } from "../../validations/models/BoardValidate";
 
 export const board = express.Router();
 
+/**
+ * @openapi
+ * /board:
+ *   get:
+ *     tags:
+ *      - Board
+ *     description: Essa rota lista todas as tarefas cadastradas.
+ *     responses:
+ *     200:
+ *       description: Ok.
+ *       content:
+ *         application/json:
+ *           schema:
+ *            $ref: '#/components/schemas/Board'
+ *
+ *
+ * components:
+ *   schemas:
+ *    Board:
+ *     type: object
+ *    properties:
+ *     id:
+ *     type: string
+ *     example: aksdla-asda
+ */
 board.get("/", async (req, res) => {
   const boards = await boardRepository.findAll();
 
@@ -32,7 +57,7 @@ board.post("/", async (req, res) => {
   if (BoardValidate.isValid(errors, board)) {
     await boardRepository.create(board);
     return res.status(201).json({
-      result: {
+      data: {
         name: "success",
         message: "Column created successfully!",
       },
@@ -41,7 +66,7 @@ board.post("/", async (req, res) => {
   }
 
   return res.status(400).json({
-    result: errors.list,
+    data: errors.list,
     statusCode: 400,
   });
 });

@@ -27,7 +27,7 @@ export default class TodoMoveToColumnService {
       })
     ) {
       return {
-        result: errorsToValidateParams.list,
+        data: errorsToValidateParams.list,
         statusCode: 400,
       };
     }
@@ -58,13 +58,13 @@ export default class TodoMoveToColumnService {
       await this.columnRepository.update(toColumn);
 
       return {
-        result: { name: "success", result: "Todo moved successfully!" },
+        data: { name: "success", data: "Todo moved successfully!" },
         statusCode: 200,
       };
     }
 
     return {
-      result: errorsToValidateService.list,
+      data: errorsToValidateService.list,
       statusCode: 400,
     };
   }

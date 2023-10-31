@@ -37,7 +37,7 @@ todoRouter.post("/", async (req, res) => {
   }
 
   return res.status(400).json({
-    result: errors.list,
+    data: errors.list,
     statusCode: 400,
   });
 });

@@ -12,21 +12,21 @@ export class RequestMoveTodoValidate {
     if (!request.todoId) {
       errors.addError({
         name: "todoId",
-        result: "TodoId is required",
+        data: "TodoId is required",
       });
     }
 
     if (!request.fromColumnId) {
       errors.addError({
         name: "fromColumnId",
-        result: "FromColumnId is required",
+        data: "FromColumnId is required",
       });
     }
 
     if (!request.toColumnId) {
       errors.addError({
         name: "toColumnId",
-        result: "ToColumnId is required",
+        data: "ToColumnId is required",
       });
     }
 

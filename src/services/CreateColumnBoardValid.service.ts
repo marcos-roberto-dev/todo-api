@@ -22,11 +22,11 @@ export default class CreateColumnBoardValidService {
       await this.boardRepository.update(board);
 
       return {
-        result: { name: "success", message: "Column created successfully!" },
+        data: { name: "success", message: "Column created successfully!" },
         statusCode: 201,
       };
     }
 
-    return { result: errors.list, statusCode: 400 };
+    return { data: errors.list, statusCode: 400 };
   }
 }

@@ -1,6 +1,6 @@
 import { ErrorValidateData } from "../../validations/Validate";
 
 export type MessageResponse = {
-  result: ErrorValidateData[];
+  data: ErrorValidateData[];
   statusCode: number;
 };

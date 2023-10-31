@@ -6,14 +6,14 @@ export class CreateTodoSetColumnBoardValidate {
     if (!column) {
       errors.addError({
         name: "column",
-        result: "Column is not found",
+        data: "Column is not found",
       });
     }
 
     if (!board) {
       errors.addError({
         name: "board",
-        result: "Board is not found",
+        data: "Board is not found",
       });
     }
 
