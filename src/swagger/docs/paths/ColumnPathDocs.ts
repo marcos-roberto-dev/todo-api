@@ -37,14 +37,20 @@ export const ColumnPathDocs: OpenAPIV3.PathsObject = {
               properties: {
                 name: {
                   type: "string",
-                  example: "new project",
+                  example: "new column",
                   description: "Name of the Column",
+                },
+                boardId: {
+                  type: "string",
+                  example: "board_id_mock_1",
+                  description: "Id of the Board",
                 },
               },
             },
           },
         },
       },
+
       responses: {
         "201": {
           description: "Ok",

@@ -37,7 +37,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
               properties: {
                 name: {
                   type: "string",
-                  example: "new project",
+                  example: "new board",
                   description: "Name of the Board",
                 },
               },
