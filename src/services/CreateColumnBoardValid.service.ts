@@ -11,7 +11,7 @@ export default class CreateColumnBoardValidService {
     private boardRepository: BoardRepository
   ) {}
 
-  async execute(column: Column): Promise<Record<string, any>> {
+  async execute(column: Column): Promise<MessageResponse> {
     const board = await this.boardRepository.findById(column.getBoardId);
     const errors = new ErrorValidate();
 

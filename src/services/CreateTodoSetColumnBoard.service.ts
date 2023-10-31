@@ -13,7 +13,7 @@ export default class CreateTodoSetColumnBoardService {
     private boardRepository: BoardRepositoryMemory
   ) {}
 
-  async execute(todo: Todo): Promise<Record<string, any>> {
+  async execute(todo: Todo): Promise<MessageResponse> {
     const column = await this.columnRepository.findById(todo.getColumnId);
     const board = await this.boardRepository.findById(todo.getBoardId);
 
@@ -26,7 +26,7 @@ export default class CreateTodoSetColumnBoardService {
       await this.boardRepository.update(board);
 
       return {
-        data: { name: "success", data: "Todo created successfully!" },
+        data: { name: "success", message: "Todo created successfully!" },
         statusCode: 201,
       };
     }

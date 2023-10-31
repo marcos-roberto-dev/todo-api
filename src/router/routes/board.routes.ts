@@ -7,31 +7,6 @@ import { BoardValidate } from "../../validations/models/BoardValidate";
 
 export const board = express.Router();
 
-/**
- * @openapi
- * /board:
- *   get:
- *     tags:
- *      - Board
- *     description: Essa rota lista todas as tarefas cadastradas.
- *     responses:
- *     200:
- *       description: Ok.
- *       content:
- *         application/json:
- *           schema:
- *            $ref: '#/components/schemas/Board'
- *
- *
- * components:
- *   schemas:
- *    Board:
- *     type: object
- *    properties:
- *     id:
- *     type: string
- *     example: aksdla-asda
- */
 board.get("/", async (req, res) => {
   const boards = await boardRepository.findAll();
 

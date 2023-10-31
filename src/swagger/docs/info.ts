@@ -1,9 +1,9 @@
 import { OpenAPIV3 } from "openapi-types";
 
 export const swaggerInfo: OpenAPIV3.InfoObject = {
-  title: "API de gerenciamento de lista de tarefas",
+  title: "Task List Management API",
   description:
-    "Essa API tem como foco o gerenciamento de tarefas, onde é possível criar, editar, mover, deletar e listar tarefas.",
+    "This API focuses on task management, allowing you to create, edit, move, delete, and list tasks.",
   version: "1.0.0",
   contact: {
     name: "Marcos Roberto",

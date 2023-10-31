@@ -16,7 +16,7 @@ export default class TodoMoveToColumnService {
     todoId,
     toColumnId,
     fromColumnId,
-  }: ITodoMoveToColumnRequestDTO): Promise<Record<string, any>> {
+  }: ITodoMoveToColumnRequestDTO): Promise<MessageResponse> {
     const errorsToValidateParams = new ErrorValidate();
 
     if (
@@ -58,7 +58,7 @@ export default class TodoMoveToColumnService {
       await this.columnRepository.update(toColumn);
 
       return {
-        data: { name: "success", data: "Todo moved successfully!" },
+        data: { name: "success", message: "Todo moved successfully!" },
         statusCode: 200,
       };
     }

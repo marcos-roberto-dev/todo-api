@@ -1,13 +1,13 @@
 import { OpenAPIV3 } from "openapi-types";
 import { messageCode } from "../schemas/messageCode";
-import { BoardModelDoc } from "../components/Board";
+import { TodoModelDoc } from "../components/Todo";
 
-export const BoardPathDocs: OpenAPIV3.PathsObject = {
-  "/board": {
+export const TodoPathDocs: OpenAPIV3.PathsObject = {
+  "/todo": {
     get: {
-      tags: ["Board"],
-      summary: "List all boards",
-      description: "This route lists all registered boards.",
+      tags: ["Todo"],
+      summary: "List all Todos",
+      description: "This route lists all registered Todos.",
       responses: {
         "200": {
           description: "Ok",
@@ -16,7 +16,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
               schema: {
                 type: "array",
                 items: {
-                  $ref: "#/components/schemas/Board",
+                  $ref: "#/components/schemas/Todo",
                 },
               },
             },
@@ -25,9 +25,9 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
       },
     },
     post: {
-      tags: ["Board"],
-      summary: "Create a new Board",
-      description: "This route creates a new Board.",
+      tags: ["Todo"],
+      summary: "Create a new Todo",
+      description: "This route creates a new Todo.",
       requestBody: {
         content: {
           "application/json": {
@@ -37,8 +37,18 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
               properties: {
                 name: {
                   type: "string",
-                  example: "new project",
-                  description: "Name of the Board",
+                  example: "new todo",
+                  description: "Name of the Todo",
+                },
+                columnId: {
+                  type: "string",
+                  example: "column_id_mock_1",
+                  description: "columnId of the Todo",
+                },
+                boardId: {
+                  type: "string",
+                  example: "board_id_mock_1",
+                  description: "boardId of the Todo",
                 },
               },
             },
@@ -51,8 +61,8 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
           content: {
             "application/json": {
               schema: messageCode({
-                name: "new board",
-                message: "Board created successfully!",
+                name: "new todo",
+                message: "Todo created successfully!",
                 statusCode: 201,
               }),
             },
@@ -64,7 +74,10 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
             "application/json": {
               schema: messageCode({
                 statusCode: 400,
-                list: [{ name: "name", message: "Name is required!" }],
+                list: [
+                  { name: "name", message: "Name is required!" },
+                  { name: "boardId", message: "BoardId is required!" },
+                ],
               }),
             },
           },
@@ -72,18 +85,18 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
       },
     },
   },
-  "/board/{id}": {
+  "/todo/{id}": {
     get: {
-      tags: ["Board"],
-      summary: "List a board",
-      description: "This route lists a specific board.",
+      tags: ["Todo"],
+      summary: "List a Todo",
+      description: "This route lists a specific Todo.",
       parameters: [
         {
           name: "id",
           in: "path",
           description: "Board Id",
           required: true,
-          example: "board_id_mock_1",
+          example: "column_id_mock_1",
         },
       ],
       responses: {
@@ -91,7 +104,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
           description: "Ok",
           content: {
             "application/json": {
-              schema: BoardModelDoc,
+              schema: TodoModelDoc,
             },
           },
         },

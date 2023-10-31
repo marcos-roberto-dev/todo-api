@@ -1,50 +1,39 @@
 import { OpenAPIV3 } from "openapi-types";
 
-interface CreateSuccess {
+type ListMessages = {
   name: string;
   message: string;
+};
+
+interface CreateSuccess {
+  name?: string;
+  message?: string;
   statusCode: number;
-  list?: boolean;
+  list?: ListMessages[];
 }
 
 export function messageCode({
   name,
   message,
   statusCode,
-  list = false,
+  list = [],
 }: CreateSuccess): OpenAPIV3.SchemaObject {
   return {
     type: "object",
     properties: {
-      data: !list
-        ? {
-            type: "object",
-            properties: {
-              name: {
-                type: "string",
-                example: name,
+      data:
+        list.length <= 0
+          ? {
+              type: "object",
+              example: {
+                name,
+                message,
               },
-              message: {
-                type: "string",
-                example: message,
-              },
+            }
+          : {
+              type: "object",
+              example: list,
             },
-          }
-        : {
-            type: "array",
-            items: {
-              properties: {
-                name: {
-                  type: "string",
-                  example: name,
-                },
-                message: {
-                  type: "string",
-                  example: message,
-                },
-              },
-            },
-          },
       statusCode: {
         type: "number",
         example: statusCode,

@@ -1,13 +1,13 @@
 import { OpenAPIV3 } from "openapi-types";
 import { messageCode } from "../schemas/messageCode";
-import { BoardModelDoc } from "../components/Board";
+import { ColumnModelDoc } from "../components/Column";
 
-export const BoardPathDocs: OpenAPIV3.PathsObject = {
-  "/board": {
+export const ColumnPathDocs: OpenAPIV3.PathsObject = {
+  "/column": {
     get: {
-      tags: ["Board"],
-      summary: "List all boards",
-      description: "This route lists all registered boards.",
+      tags: ["Column"],
+      summary: "List all Columns",
+      description: "This route lists all registered Columns.",
       responses: {
         "200": {
           description: "Ok",
@@ -16,7 +16,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
               schema: {
                 type: "array",
                 items: {
-                  $ref: "#/components/schemas/Board",
+                  $ref: "#/components/schemas/Column",
                 },
               },
             },
@@ -25,9 +25,9 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
       },
     },
     post: {
-      tags: ["Board"],
-      summary: "Create a new Board",
-      description: "This route creates a new Board.",
+      tags: ["Column"],
+      summary: "Create a new Column",
+      description: "This route creates a new Column.",
       requestBody: {
         content: {
           "application/json": {
@@ -38,7 +38,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
                 name: {
                   type: "string",
                   example: "new project",
-                  description: "Name of the Board",
+                  description: "Name of the Column",
                 },
               },
             },
@@ -51,8 +51,8 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
           content: {
             "application/json": {
               schema: messageCode({
-                name: "new board",
-                message: "Board created successfully!",
+                name: "new column",
+                message: "Column created successfully!",
                 statusCode: 201,
               }),
             },
@@ -64,7 +64,10 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
             "application/json": {
               schema: messageCode({
                 statusCode: 400,
-                list: [{ name: "name", message: "Name is required!" }],
+                list: [
+                  { name: "name", message: "Name is required!" },
+                  { name: "boardId", message: "BoardId is required!" },
+                ],
               }),
             },
           },
@@ -72,18 +75,18 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
       },
     },
   },
-  "/board/{id}": {
+  "/column/{id}": {
     get: {
-      tags: ["Board"],
-      summary: "List a board",
-      description: "This route lists a specific board.",
+      tags: ["Column"],
+      summary: "List a column",
+      description: "This route lists a specific column.",
       parameters: [
         {
           name: "id",
           in: "path",
           description: "Board Id",
           required: true,
-          example: "board_id_mock_1",
+          example: "column_id_mock_1",
         },
       ],
       responses: {
@@ -91,7 +94,7 @@ export const BoardPathDocs: OpenAPIV3.PathsObject = {
           description: "Ok",
           content: {
             "application/json": {
-              schema: BoardModelDoc,
+              schema: ColumnModelDoc,
             },
           },
         },

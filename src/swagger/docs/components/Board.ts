@@ -5,29 +5,29 @@ export const BoardModelDoc: OpenAPIV3.SchemaObject = {
   properties: {
     id: {
       type: "string",
-      description: "ID do Board",
+      description: "Id Board",
     },
     name: {
       type: "string",
-      description: "Nome do Board",
+      description: "Name Board",
     },
     description: {
       type: "string",
-      description: "Descrição do Board",
+      description: "Description Board",
     },
     todosId: {
       type: "array",
       items: {
         type: "string",
       },
-      description: "Id das tarefas do Board",
+      description: "Id's of the Todos of the Board",
     },
     columnsId: {
       type: "array",
       items: {
         type: "string",
       },
-      description: "Id das colunas do Board",
+      description: "Id's of the Columns of the Board",
     },
   },
 };
