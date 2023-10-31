@@ -11,21 +11,21 @@ export class BoardValidate {
     if (!modelEntity.getName) {
       errors.addError({
         name: "name",
-        data: "Name is required",
+        message: "Name is required",
       });
     }
 
     if (columnsId.length !== columnsIdSet.size) {
       errors.addError({
         name: "columnsId",
-        data: "ColumnsId is duplicated",
+        message: "ColumnsId is duplicated",
       });
     }
 
     if (todosId.length !== todosIdSet.size) {
       errors.addError({
         name: "todosId",
-        data: "TodosId is duplicated",
+        message: "TodosId is duplicated",
       });
     }
 

@@ -9,21 +9,21 @@ export class ColumnValidate {
     if (!modelEntity.getName) {
       errors.addError({
         name: "name",
-        data: "Name is required",
+        message: "Name is required",
       });
     }
 
     if (todosId.length !== todosIdSet.size) {
       errors.addError({
         name: "todosId",
-        data: "TodosId is duplicated",
+        message: "TodosId is duplicated",
       });
     }
 
     if (!modelEntity.getBoardId) {
       errors.addError({
         name: "boardId",
-        data: "BoardId is required",
+        message: "BoardId is required",
       });
     }
 

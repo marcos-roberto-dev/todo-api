@@ -6,21 +6,21 @@ export class TodoValidate {
     if (!modelEntity.getName) {
       errors.addError({
         name: "name",
-        data: "Name is required",
+        message: "Name is required",
       });
     }
 
     if (!modelEntity.getColumnId) {
       errors.addError({
         name: "columnId",
-        data: "ColumnId is required",
+        message: "ColumnId is required",
       });
     }
 
     if (!modelEntity.getBoardId) {
       errors.addError({
         name: "boardId",
-        data: "BoardId is required",
+        message: "BoardId is required",
       });
     }
 
