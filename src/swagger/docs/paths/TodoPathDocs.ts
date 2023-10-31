@@ -96,7 +96,7 @@ export const TodoPathDocs: OpenAPIV3.PathsObject = {
           in: "path",
           description: "Board Id",
           required: true,
-          example: "column_id_mock_1",
+          example: "todo_id_mock_1",
         },
       ],
       responses: {
